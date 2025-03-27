@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const inquirer = require('inquirer');
-const prompt = inquirer.createPromptModule();
+const inquirer = require('inquirer').createPromptModule();
+const { showTittle } = require('../interface');
 
 function listarScripts() {
     const dirPath = path.join(__dirname, '../../scripts'); // Diretório onde os scripts são armazenados
@@ -23,7 +23,15 @@ function listarScripts() {
     }
 }
 
-module.exports = { listarScripts };
+async function exibirDescricao(script) {
+    const caminhoDescricao = path.join(__dirname,'../../scripts', script, 'descricao.txt');
+    if (fs.existsSync(caminhoDescricao)) {
+        const descricao = fs.readFileSync(caminhoDescricao, 'utf-8');
+        console.log(`\nDescrição: ${descricao}\n`);
+    } else {
+        console.log("\nDescrição não disponível.\n");
+    }
+}
 
 async function escolherScript() {
     const scriptsDisponiveis = listarScripts();
@@ -32,16 +40,40 @@ async function escolherScript() {
         return null;
     }
 
-    const resposta = await prompt([
-        {
-            type: 'list',
-            name: 'scriptEscolhido',
-            message: 'Escolha um script para executar:',
-            choices: scriptsDisponiveis
-        }
-    ]);
+    let scriptEscolhido;
+    let descricaoExibida = false;
 
-    return resposta.scriptEscolhido;
+    while (true) {
+        console.clear()
+        showTittle()
+        const resposta = await inquirer([
+            {
+                type: 'list',
+                name: 'scriptEscolhido',
+                message: 'Escolha um script para executar:',
+                choices: scriptsDisponiveis,
+            }
+        ]);
+
+        scriptEscolhido = resposta.scriptEscolhido;
+
+            await exibirDescricao(scriptEscolhido);
+            descricaoExibida = true;
+        
+
+        const confirmacao = await inquirer([
+            {
+                type: 'confirm',
+                name: 'confirmarExecucao',
+                message: `Você deseja executar o script ${scriptEscolhido}?`,
+                default: false,
+            }
+        ]);
+
+        if (confirmacao.confirmarExecucao) {
+            return scriptEscolhido;
+        }
+    }
 }
 
 module.exports = { escolherScript };

@@ -1,11 +1,7 @@
 const { escolherScript } = require('./modules/selection');
 
-
-
-
 async function iniciar() {
     console.clear();
-    console.log('Bem-vindo à CLI!');
 
     const scriptSelecionado = await escolherScript();
 
