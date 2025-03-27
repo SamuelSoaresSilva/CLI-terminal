@@ -1,0 +1,8 @@
+{
+    "descricao": "Descricao generica tabela de apoio",
+    "argumentos": {
+      "nome-modulo": "Digite o nome do modulo (abcde-fghi):",
+      "nome-modulo-plural": "Digite o nome do modulo no plural(abcdes-fghis):",
+      "path": "Digite o path referente ao modulo (abc-def/ghi/jklm):"
+    }
+}

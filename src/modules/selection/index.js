@@ -24,14 +24,23 @@ function listarScripts() {
 }
 
 async function exibirDescricao(script) {
-    const caminhoDescricao = path.join(__dirname,'../../scripts', script, 'descricao.txt');
-    if (fs.existsSync(caminhoDescricao)) {
-        const descricao = fs.readFileSync(caminhoDescricao, 'utf-8');
-        console.log(`\nDescrição: ${descricao}\n`);
+    const caminhoConfig = path.join(__dirname, '../../scripts', script, 'config.json');
+
+    if (!fs.existsSync(caminhoConfig)) {
+        console.log("\nDescrição não disponível.\n");
+        return;
+    }
+
+    const conteudoConfig = fs.readFileSync(caminhoConfig, 'utf-8');
+    const config = JSON.parse(conteudoConfig);
+
+    if (config.descricao) {
+        console.log(`\nDescrição: ${config.descricao}\n`);
     } else {
         console.log("\nDescrição não disponível.\n");
     }
 }
+
 
 async function escolherScript() {
     const scriptsDisponiveis = listarScripts();

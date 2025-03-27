@@ -8,7 +8,7 @@ async function iniciar() {
 
     if (scriptSelecionado) {
         console.log(`Você selecionou o script: ${scriptSelecionado}`);
-        argumentos = await coletarArgumentos()
+        argumentos = await coletarArgumentos(scriptSelecionado)
         console.log(`Argumentos do script: ${argumentos}`)
 
         //fazer algo com o script selecionado, como executar o script ou mostrar detalhes
