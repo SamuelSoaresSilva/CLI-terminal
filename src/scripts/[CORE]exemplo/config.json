@@ -1,0 +1,8 @@
+{
+    "descricao": "Script demonstrativo",
+    "argumentos": {
+      "dataInicio": "Digite um o primeiro argumento (especificação do argumento):",
+      "dataFim": "Digite um o segundo argumento (especificação do argumento):",
+      "formato": "Digite um o terceiro argumento (especificação do argumento):"
+    }
+  }
