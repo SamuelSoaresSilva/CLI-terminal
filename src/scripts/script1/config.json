@@ -1,8 +1,0 @@
-{
-    "descricao": "Descricao generica",
-    "argumentos": {
-      "dataInicio": "[EXEMPLO] Digite a data de início (YYYY-MM-DD):",
-      "dataFim": "[EXEMPLO] Digite a data de fim (YYYY-MM-DD):",
-      "formato": "[EXEMPLO] Escolha o formato do relatório (PDF, CSV, XLSX):"
-    }
-  }
