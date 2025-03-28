@@ -1,20 +1,14 @@
 const { escolherScript } = require('./modules/selection');
 const { coletarArgumentos } = require('./modules/arguments');
+const { executarScript } = require('./modules/execution');
 
 async function iniciar() {
     console.clear();
-    let argumentos = null
     const scriptSelecionado = await escolherScript();
-
-    if (scriptSelecionado) {
-        console.log(`Você selecionou o script: ${scriptSelecionado}`);
-        argumentos = await coletarArgumentos(scriptSelecionado)
-        console.log(`Argumentos do script: ${argumentos}`)
-
+    const argumentos = await coletarArgumentos(scriptSelecionado)
+    
         //fazer algo com o script selecionado, como executar o script ou mostrar detalhes
-    } else {
-        console.log('Nenhum script selecionado. Saindo...');
-    }
+    await executarScript(scriptSelecionado, argumentos)
 }
 
 iniciar();

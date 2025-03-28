@@ -9,8 +9,6 @@
   "author": "SamuelSoaresSilva",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.4.1",
-    "inquirer": "^12.5.0",
-    "ora": "^8.2.0"
+    "inquirer": "^12.5.0"
   }
 }
