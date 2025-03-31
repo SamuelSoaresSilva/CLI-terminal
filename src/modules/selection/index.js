@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer').createPromptModule();
 const { showTittle } = require('../interface');
+const { clearTerminal } = require('../../utils/helpers');
 
 function listarScripts() {
     const dirPath = path.join(__dirname, '../../scripts'); // Diretório onde os scripts são armazenados
@@ -53,7 +54,7 @@ async function escolherScript() {
     let descricaoExibida = false;
 
     while (true) {
-        console.clear()
+        clearTerminal()
         showTittle()
         const resposta = await inquirer([
             {
